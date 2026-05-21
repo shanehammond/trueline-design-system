@@ -68,6 +68,18 @@ Never mix modes. The colour split is the governance cue — anyone glancing at a
 
 ---
 
+## Keeping it in sync
+
+`brand/` and `briefing/` mirror the canonical Trueline Claude Code skill at `~/.claude/skills/trueline/`. When the skill changes, re-sync with:
+
+```bash
+./scripts/sync-from-skill.sh
+```
+
+It copies the latest reference files in, runs `git status`, and stops — review the diff and commit if happy. Logos are not synced (their source files live in the private `trueline-business` repo and rarely change).
+
+---
+
 ## What's NOT in here
 
 This repo is intentionally narrow. Business data, strategy decks, customer data, sales numbers, staff information and operational tooling live in private Trueline repos and are not published.

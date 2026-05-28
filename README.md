@@ -10,7 +10,9 @@ Public reference for AI design tools (Claude Design, Figma AI, etc.) and externa
 
 **Briefing an AI design tool:** point it at this repo and tell it to read [`briefing/Trueline-AI-Briefing-Pack.md`](briefing/Trueline-AI-Briefing-Pack.md) first — it's the tool-agnostic master pack designed for paste-into-system-prompt use.
 
-**Designing a one-off asset:** read the five files in [`brand/`](brand/) for the strategic + voice + visual rules, then grab the right logo from [`logos/`](logos/).
+**Designing a one-off asset:** read the five `.md` files in [`brand/`](brand/) for the strategic + voice + visual rules, then grab the right logo from [`logos/`](logos/).
+
+**Building an HTML document:** link [`brand/trueline-design-system.css`](brand/trueline-design-system.css) for design tokens (palette, type scale, spacing, `.tl-mode-internal` toggle). For management-level internal docs, copy the structure of [`brand/internal-leadership-briefing.example.html`](brand/internal-leadership-briefing.example.html) — it demonstrates every component (header band, meta strip, numbered sections, chips, callouts, priority cards, framework strip, data scoreboards, open-items table) with placeholder content.
 
 **Setting up a per-tool agent:** [`briefing/`](briefing/) contains setup instructions for Claude.ai Projects, ChatGPT Custom GPTs, and Microsoft 365 Copilot.
 
@@ -20,11 +22,13 @@ Public reference for AI design tools (Claude Design, Figma AI, etc.) and externa
 
 ```
 brand/        Canonical brand reference (the source of truth)
-  PLATFORM.md   Strategic platform — brand idea, promise, 5 pillars, campaign
-  AUDIENCE.md   Primary avatar, 5 segments, customer fears, journey stages
-  VOICE.md      5 voice attributes, tone by channel, copy rules, do/do-not
-  BRAND.md      Visual identity — colours, fonts, logo usage, document modes
-  COMPANY.md    Legal entities, addresses, signatory, contract defaults
+  PLATFORM.md                              Strategic platform — brand idea, promise, 5 pillars, campaign
+  AUDIENCE.md                              Primary avatar, 5 segments, customer fears, journey stages
+  VOICE.md                                 5 voice attributes, tone by channel, copy rules, do/do-not
+  BRAND.md                                 Visual identity — colours, fonts, logo usage, document modes
+  COMPANY.md                               Legal entities, addresses, signatory, contract defaults
+  trueline-design-system.css               Machine-readable design tokens (link from any HTML deliverable)
+  internal-leadership-briefing.example.html  Layout exemplar for management-level internal documents
 
 logos/        Master logo files in every format
   ai/           Adobe Illustrator source (CMYK + RGB)

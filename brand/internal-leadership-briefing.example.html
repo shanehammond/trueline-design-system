@@ -1,0 +1,915 @@
+<!doctype html>
+<!--
+  Trueline Design System — Internal Leadership Briefing
+  Layout reference / component exemplar for management-level internal documents.
+
+  This file demonstrates every component in the internal-mode design system
+  using PLACEHOLDER CONTENT. Copy the structure, swap the copy, and you have
+  an on-brand internal leadership briefing.
+
+  Pairs with: brand/trueline-design-system.css (design tokens)
+
+  Internal mode is signalled by <body class="tl-mode-internal"> below — it
+  strips brand red, swaps the accent to grey, and gives the doc its
+  full-width grey header band. Internal-mode is mandatory for any document
+  intended for staff, leadership, or board audiences. See brand/BRAND.md
+  for the external-vs-internal mode rules.
+
+  Print styles are wired in — Cmd-P → clean A4 PDF, header band prints in
+  colour.
+-->
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Internal Leadership Briefing — Layout Reference — Trueline Design System</title>
+<link rel="stylesheet" href="trueline-design-system.css" />
+<style>
+  /* ---------- Document shell ---------- */
+  html, body { background: var(--tl-grey-05); }
+  body {
+    color: var(--fg);
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+
+  .doc {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--bg);
+    box-shadow: 0 24px 60px rgba(20,22,24,0.08), 0 4px 12px rgba(20,22,24,0.05);
+  }
+
+  /* ---------- Internal-mode header band ---------- */
+  .doc-header {
+    background: var(--tl-grey);
+    color: var(--tl-white);
+    padding: 36px clamp(40px, 6vw, 72px) 40px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: end;
+    gap: clamp(24px, 4vw, 48px);
+  }
+  .doc-header img.logo { width: 180px; height: auto; display: block; }
+  .doc-header .meta-eyebrow {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.62);
+    margin-bottom: 8px;
+  }
+  .doc-header h1.title {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: clamp(28px, 3.4vw, 38px);
+    line-height: 1.05;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--tl-white);
+    margin: 0;
+  }
+  .doc-header .subtitle {
+    font-family: var(--font-display);
+    font-weight: var(--w-book);
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.78);
+    margin-top: 10px;
+  }
+
+  /* Meta strip just under the header band */
+  .doc-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .doc-meta > div {
+    padding: 18px clamp(20px, 3vw, 32px);
+    border-right: 1px solid var(--border-soft);
+  }
+  .doc-meta > div:last-child { border-right: 0; }
+  .doc-meta .label {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: 6px;
+  }
+  .doc-meta .value {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    color: var(--fg-strong);
+    font-size: 14px;
+    letter-spacing: 0.01em;
+  }
+
+  /* ---------- Body wrapper ---------- */
+  .doc-body { padding: clamp(36px, 5vw, 64px) clamp(40px, 6vw, 72px) 24px; }
+
+  /* ---------- Section ---------- */
+  section.tl-section { margin-bottom: 56px; break-inside: avoid-page; }
+  section.tl-section:last-of-type { margin-bottom: 0; }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    align-items: baseline;
+    margin-bottom: 18px;
+  }
+  .section-num {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    color: var(--fg-muted);
+    padding-top: 6px;
+  }
+  .section-head h2 {
+    font-size: clamp(20px, 2vw, 24px);
+    line-height: 1.15;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-strong);
+    margin: 0;
+  }
+  .section-head + .tl-rule {
+    margin-left: 76px;
+    width: 48px;
+    height: 3px;
+    background: var(--tl-grey);
+    margin-top: 0;
+    margin-bottom: 22px;
+  }
+  .section-body { margin-left: 76px; }
+  .section-body > p { max-width: 68ch; }
+  .section-body > p + p { margin-top: 0; }
+
+  /* ---------- Subsection (h3-style) ---------- */
+  .sub-head {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-strong);
+    margin: 28px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sub-head::before {
+    content: "";
+    width: 18px;
+    height: 2px;
+    background: var(--tl-grey);
+    display: inline-block;
+  }
+  .sub-head.is-muted { color: var(--fg-muted); }
+  .sub-head.is-muted::before { background: var(--tl-grey-50); }
+
+  /* ---------- Lists ---------- */
+  ul.tl-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  ul.tl-list li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--fg);
+    max-width: 72ch;
+    line-height: 1.55;
+  }
+  ul.tl-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 8px;
+    height: 1px;
+    background: var(--tl-grey-70);
+  }
+
+  /* ---------- Priorities row (two stacked callouts) ---------- */
+  .priority-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 8px 0 4px;
+  }
+  .priority-card {
+    border: 1px solid var(--border);
+    background: var(--bg);
+    padding: 22px 24px;
+    position: relative;
+  }
+  .priority-card .ord {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--fg-muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .priority-card .name {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-strong);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .priority-card .desc {
+    font-size: 13.5px;
+    color: var(--fg);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .priority-card::after {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--tl-grey);
+  }
+
+  /* ---------- Framework strip ---------- */
+  .framework {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 18px 0 8px;
+  }
+  .framework > div {
+    background: var(--bg);
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .framework .step-num {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--fg-muted);
+    margin-bottom: 8px;
+  }
+  .framework .step-word {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 18px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-strong);
+  }
+
+  /* ---------- Branch table ---------- */
+  table.tl-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 4px 0 8px;
+    font-size: 13.5px;
+  }
+  table.tl-table th {
+    text-align: left;
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    background: var(--tl-grey-05);
+  }
+  table.tl-table td {
+    padding: 14px 14px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border-soft);
+    color: var(--fg);
+  }
+  table.tl-table tbody tr:last-child td { border-bottom: 1px solid var(--border); }
+  table.tl-table .branch {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-strong);
+    white-space: nowrap;
+  }
+
+  /* Status chips */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 9px 4px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    background: var(--tl-grey-05);
+    color: var(--fg-strong);
+    white-space: nowrap;
+  }
+  .chip::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    background: var(--tl-grey-50);
+    display: inline-block;
+  }
+  .chip.on-track { background: #ecf3ee; border-color: #cfe1d4; color: #2c5237; }
+  .chip.on-track::before { background: #4a8a5b; }
+  .chip.monitor { background: #f4f0e6; border-color: #e2d8b7; color: #6b5419; }
+  .chip.monitor::before { background: #b89327; }
+  .chip.action  { background: #f8ecec; border-color: #e6c9c9; color: #7c1d1f; }
+  .chip.action::before  { background: var(--tl-red); }
+
+  /* Priority chips for open items table */
+  .chip.p-high   { background: #f8ecec; border-color: #e6c9c9; color: #7c1d1f; }
+  .chip.p-high::before { background: var(--tl-red); }
+  .chip.p-medium { background: #f4f0e6; border-color: #e2d8b7; color: #6b5419; }
+  .chip.p-medium::before { background: #b89327; }
+  .chip.p-low    { background: var(--tl-grey-05); border-color: var(--border); color: var(--fg-muted); }
+  .chip.p-low::before { background: var(--tl-grey-70); }
+
+  /* ---------- Pull quote / callout ---------- */
+  .callout {
+    background: var(--tl-grey-05);
+    border-left: 3px solid var(--tl-grey);
+    padding: 18px 22px;
+    margin: 18px 0;
+    color: var(--fg);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .callout strong {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    letter-spacing: 0.04em;
+    color: var(--fg-strong);
+  }
+
+  /* Two-column subsection grid for "agreed / pending" pairs */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .two-col .col .sub-head { margin-top: 0; }
+
+  /* Leads strip */
+  .leads-strip {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1px;
+    background: var(--border-soft);
+    border: 1px solid var(--border);
+    margin: 10px 0 8px;
+  }
+  .leads-strip > div {
+    background: var(--bg);
+    padding: 12px 10px;
+    text-align: center;
+  }
+  .leads-strip .num {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 22px;
+    color: var(--fg-strong);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .leads-strip .name {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-top: 8px;
+  }
+
+  /* Open items table — priority column treatment */
+  table.open-items td.owner {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    color: var(--fg-strong);
+    white-space: nowrap;
+  }
+  table.open-items td.item { color: var(--fg); }
+  table.open-items td.pri { white-space: nowrap; width: 110px; }
+
+  /* ---------- Footer ---------- */
+  .doc-footer {
+    border-top: 1px solid var(--border);
+    padding: 22px clamp(40px, 6vw, 72px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--fg-muted);
+    letter-spacing: 0.04em;
+  }
+  .doc-footer .confidential {
+    font-family: var(--font-display);
+    font-weight: var(--w-medium);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+
+  /* Section divider */
+  .section-divider {
+    height: 1px;
+    background: var(--border-soft);
+    margin: 48px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 780px) {
+    .doc-header { grid-template-columns: 1fr; align-items: start; }
+    .doc-meta { grid-template-columns: repeat(2, 1fr); }
+    .doc-meta > div { border-bottom: 1px solid var(--border-soft); }
+    .priority-grid { grid-template-columns: 1fr; }
+    .framework { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; gap: 0; }
+    .section-head { grid-template-columns: 1fr; gap: 4px; }
+    .section-head + .tl-rule { margin-left: 0; }
+    .section-body { margin-left: 0; }
+    .leads-strip { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* Print */
+  @media print {
+    html, body { background: var(--tl-white); }
+    .doc { box-shadow: none; max-width: none; }
+    section.tl-section { break-inside: avoid; }
+    .doc-header { background: var(--tl-grey) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .chip, .callout, .priority-card, table.tl-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page { size: A4; margin: 12mm; }
+  }
+</style>
+</head>
+<body class="tl-mode-internal">
+
+<template id="__bundler_thumbnail" data-bg-color="#4a4f55">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#4a4f55"/>
+    <!-- Document silhouette -->
+    <rect x="300" y="160" width="600" height="540" rx="4" fill="#ffffff"/>
+    <!-- Grey header band on doc -->
+    <rect x="300" y="160" width="600" height="120" fill="#3a3e44"/>
+    <!-- Logo mark -->
+    <rect x="340" y="200" width="44" height="44" fill="#941114"/>
+    <rect x="396" y="208" width="120" height="10" fill="#ffffff"/>
+    <rect x="396" y="226" width="80" height="6" fill="#ffffff" opacity="0.7"/>
+    <!-- Meta strip -->
+    <line x1="300" y1="320" x2="900" y2="320" stroke="#d4d8dc" stroke-width="1"/>
+    <!-- Body lines -->
+    <rect x="340" y="360" width="60" height="6" fill="#aab0b7"/>
+    <rect x="340" y="380" width="280" height="10" fill="#2c2f33"/>
+    <rect x="340" y="402" width="32" height="3" fill="#4a4f55"/>
+    <rect x="340" y="430" width="520" height="5" fill="#aab0b7" opacity="0.7"/>
+    <rect x="340" y="442" width="480" height="5" fill="#aab0b7" opacity="0.7"/>
+    <rect x="340" y="454" width="500" height="5" fill="#aab0b7" opacity="0.7"/>
+    <!-- Two cards -->
+    <rect x="340" y="490" width="250" height="80" fill="#f6f7f8" stroke="#d4d8dc"/>
+    <rect x="340" y="490" width="3" height="80" fill="#4a4f55"/>
+    <rect x="610" y="490" width="250" height="80" fill="#f6f7f8" stroke="#d4d8dc"/>
+    <rect x="610" y="490" width="3" height="80" fill="#4a4f55"/>
+    <!-- More body -->
+    <rect x="340" y="600" width="60" height="6" fill="#aab0b7"/>
+    <rect x="340" y="620" width="220" height="10" fill="#2c2f33"/>
+    <rect x="340" y="650" width="520" height="40" fill="#f6f7f8"/>
+  </svg>
+</template>
+
+<article class="doc">
+
+  <!-- ======================= HEADER BAND ======================= -->
+  <header class="doc-header">
+    <img class="logo" src="../logos/png/Large/Trueline-Logo-WHITE-lge.png" alt="Trueline" />
+    <div class="head-text">
+      <div class="meta-eyebrow">Internal · Layout Reference</div>
+      <h1 class="title">Internal Leadership Briefing</h1>
+      <div class="subtitle">Component exemplar for management-level Trueline internal documents</div>
+    </div>
+  </header>
+
+  <!--
+    META STRIP — 4-column row directly under the header band.
+    Use uppercase 10px tracked labels above 14px medium values.
+    Common slots: Date · Prepared for · Compiled by · Status.
+  -->
+  <div class="doc-meta">
+    <div>
+      <div class="label">Date</div>
+      <div class="value">DD MMM YYYY</div>
+    </div>
+    <div>
+      <div class="label">Prepared for</div>
+      <div class="value">Audience name</div>
+    </div>
+    <div>
+      <div class="label">Compiled by</div>
+      <div class="value">Author, Role</div>
+    </div>
+    <div>
+      <div class="label">Status</div>
+      <div class="value">For review / action</div>
+    </div>
+  </div>
+
+  <!-- ======================= BODY ======================= -->
+  <div class="doc-body">
+
+    <!--
+      SECTION PATTERN
+      Each numbered section uses:
+        <section class="tl-section">
+          <div class="section-head">                       ← grid: number + h2
+            <div class="section-num">NN</div>
+            <h2>UPPERCASE SECTION TITLE</h2>
+          </div>
+          <hr class="tl-rule" />                            ← 48px grey rule
+          <div class="section-body">...content...</div>     ← 76px left indent
+        </section>
+    -->
+
+    <!-- 01 Lead paragraph + supporting paragraph -->
+    <section class="tl-section">
+      <div class="section-head">
+        <div class="section-num">01</div>
+        <h2>Section title — lead paragraph pattern</h2>
+      </div>
+      <hr class="tl-rule" />
+      <div class="section-body">
+        <p class="tl-lead">Open every briefing with a single <code>p.tl-lead</code> line stating what the document is and the period it covers. This is the only place a 17px lead paragraph is used; the rest of the body sits at 14.5px.</p>
+        <p>Follow the lead with one or two supporting paragraphs that frame the rest of the document — what's in scope, who the audience is, and what's expected of them (review, decide, action).</p>
+      </div>
+    </section>
+
+    <!-- 02 Priority cards + framework strip -->
+    <section class="tl-section">
+      <div class="section-head">
+        <div class="section-num">02</div>
+        <h2>Priority cards + framework strip</h2>
+      </div>
+      <hr class="tl-rule" />
+      <div class="section-body">
+        <p>Use a <code>.priority-grid</code> with two <code>.priority-card</code> children to spotlight the top one or two themes of the period. Cards have a 3px grey left bar; the eyebrow ord above the uppercase name above a single-sentence description.</p>
+
+        <div class="priority-grid">
+          <div class="priority-card">
+            <div class="ord">Priority 01</div>
+            <div class="name">Priority Name A</div>
+            <p class="desc">One-sentence description of the first major priority. Keep it under 18 words.</p>
+          </div>
+          <div class="priority-card">
+            <div class="ord">Priority 02</div>
+            <div class="name">Priority Name B</div>
+            <p class="desc">One-sentence description of the second priority. Cards work in pairs; for three or more themes use a list.</p>
+          </div>
+        </div>
+
+        <p style="margin-top: 24px;">Below the cards, a <code>.framework</code> strip can map the priorities to a four-stage operating model. Use four equal cells; uppercase 18px stage words; 10px tracked ord labels above.</p>
+
+        <div class="framework" aria-label="Framework strip example">
+          <div><div class="step-num">Stage 01</div><div class="step-word">Stage A</div></div>
+          <div><div class="step-num">Stage 02</div><div class="step-word">Stage B</div></div>
+          <div><div class="step-num">Stage 03</div><div class="step-word">Stage C</div></div>
+          <div><div class="step-num">Stage 04</div><div class="step-word">Stage D</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Status table with chips -->
+    <section class="tl-section">
+      <div class="section-head">
+        <div class="section-num">03</div>
+        <h2>Status table with chips</h2>
+      </div>
+      <hr class="tl-rule" />
+      <div class="section-body">
+        <p>Use a <code>.tl-table</code> with chip-based status cells for branch / unit / workstream snapshots. Column heads are uppercase 10px tracked on grey-05. The first column is a nowrap label in uppercase tracked medium weight (<code>.branch</code> class).</p>
+        <table class="tl-table">
+          <thead>
+            <tr>
+              <th style="width: 110px;">Unit</th>
+              <th>Focus area</th>
+              <th style="width: 110px;">Status</th>
+              <th style="width: 32%;">Watch point</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="branch">Unit A</td>
+              <td>Description of this unit's current focus area</td>
+              <td><span class="chip on-track">On Track</span></td>
+              <td>What to keep an eye on for this unit</td>
+            </tr>
+            <tr>
+              <td class="branch">Unit B</td>
+              <td>Description of this unit's current focus area</td>
+              <td><span class="chip monitor">Monitor</span></td>
+              <td>What to keep an eye on for this unit</td>
+            </tr>
+            <tr>
+              <td class="branch">Unit C</td>
+              <td>Description of this unit's current focus area</td>
+              <td><span class="chip action">Action</span></td>
+              <td>What to keep an eye on for this unit</td>
+            </tr>
+            <tr>
+              <td class="branch">Unit D</td>
+              <td>Description of this unit's current focus area</td>
+              <td><span class="chip on-track">On Track</span></td>
+              <td>What to keep an eye on for this unit</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 16px;"><strong>Chip variants:</strong> <code>.chip.on-track</code> (green), <code>.chip.monitor</code> (amber), <code>.chip.action</code> (red). Use sparingly — the red chip is the only place red appears in an internal-mode document, and only as a status signal.</p>
+      </div>
+    </section>
+
+    <!-- 04 Two-column decisions grid + sub-heads + dash lists -->
+    <section class="tl-section">
+      <div class="section-head">
+        <div class="section-num">04</div>
+        <h2>Two-column decisions grid</h2>
+      </div>
+      <hr class="tl-rule" />
+      <div class="section-body">
+        <p>Use <code>.two-col</code> to pair "what was agreed" against "what still needs a decision". The right column uses <code>.sub-head.is-muted</code> for a softer grey treatment that signals "not yet locked".</p>
+
+        <div class="two-col">
+          <div class="col">
+            <div class="sub-head">What was agreed</div>
+            <ul class="tl-list">
+              <li>Decision point one — short, complete sentence.</li>
+              <li>Decision point two — short, complete sentence.</li>
+              <li>Decision point three — short, complete sentence.</li>
+              <li>Decision point four — short, complete sentence.</li>
+            </ul>
+          </div>
+          <div class="col">
+            <div class="sub-head is-muted">Still needs a decision</div>
+            <ul class="tl-list">
+              <li>Open question one — what needs to be resolved.</li>
+              <li>Open question two — what needs to be resolved.</li>
+              <li>Open question three — what needs to be resolved.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 Callout + sub-head triplet -->
+    <section class="tl-section">
+      <div class="section-head">
+        <div class="section-num">05</div>
+        <h2>Callout + grouped sub-heads</h2>
+      </div>
+      <hr class="tl-rule" />
+      <div class="section-body">
+        <p>Use <code>.callout</code> for the single most important takeaway in a section — a grey-05 panel with a 3px grey left rule. Use sparingly; one per section maximum, and only when the line earns the emphasis.</p>
+
+        <div class="callout">
+          <strong>Lead with the single most important point of this section.</strong> One or two sentences. The bold lead is the headline; the rest provides just enough context to act on it.
+        </div>
+
+        <p>Below the callout, group related lists under <code>.sub-head</code> labels. The dash glyph (a 18×2px grey bar) is generated by the CSS — don't add it manually.</p>
+
+        <div class="sub-head">Sub-head — locked items</div>
+        <ul class="tl-list">
+          <li>Item one — a complete, action-clear sentence.</li>
+          <li>Item two — a complete, action-clear sentence.</li>
+          <li>Item three — bold a <strong>key term</strong> if it earns the emphasis.</li>
+        </ul>
+
+        <div class="sub-head">Sub-head — immediate actions</div>
+        <ul class="tl-list">
+          <li>Action one — what, by when, who owns it.</li>
+          <li>Action two — what, by when, who owns it.</li>
+        </ul>
+
+        <div class="sub-head is-muted">Sub-head — still to decide</div>
+        <ul class="tl-list">
+          <li>Open question one — what needs to land before the next briefing.</li>
+          <li>Open question two — keep the list short; if it's longer than five items, the section is doing too much.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 06 Grouped sub-sections (use when one section covers two related themes) -->
+    <section class="tl-section">
+      <div class="section-head">
+        <div class="section-num">06</div>
+        <h2>Grouped sub-sections</h2>
+      </div>
+      <hr class="tl-rule" />
+      <div class="section-body">
+        <p>When one section needs to cover two related-but-distinct themes, stack <code>.sub-head</code> blocks. Don't make these their own numbered sections unless they're independently scannable.</p>
+
+        <div class="sub-head">Sub-theme A</div>
+        <ul class="tl-list">
+          <li>Point one — short, complete sentence.</li>
+          <li>Point two — short, complete sentence with a <strong>strong term</strong> if it earns it.</li>
+          <li>Point three — short, complete sentence.</li>
+        </ul>
+
+        <div class="sub-head">Sub-theme B</div>
+        <ul class="tl-list">
+          <li>Point one — short, complete sentence.</li>
+          <li>Point two — short, complete sentence.</li>
+          <li>Point three — short, complete sentence.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 07 Leads / data scoreboard strip -->
+    <section class="tl-section">
+      <div class="section-head">
+        <div class="section-num">07</div>
+        <h2>Data scoreboard strip</h2>
+      </div>
+      <hr class="tl-rule" />
+      <div class="section-body">
+        <p>Use a <code>.leads-strip</code> for any 6–10-cell scoreboard: people, products, channels, weeks. Each cell is a 22px number above a 10px tracked uppercase label. Better than burying the same data in a bullet list.</p>
+
+        <div class="sub-head">Scoreboard — example metric</div>
+        <div class="leads-strip">
+          <div><div class="num">28</div><div class="name">Item A</div></div>
+          <div><div class="num">25</div><div class="name">Item B</div></div>
+          <div><div class="num">20</div><div class="name">Item C</div></div>
+          <div><div class="num">18</div><div class="name">Item D</div></div>
+          <div><div class="num">17</div><div class="name">Item E</div></div>
+          <div><div class="num">17</div><div class="name">Item F</div></div>
+          <div><div class="num">16</div><div class="name">Item G</div></div>
+          <div><div class="num">12</div><div class="name">Item H</div></div>
+        </div>
+        <p style="margin-top: 16px;">On narrow viewports the 8-column grid collapses to 4 columns automatically.</p>
+      </div>
+    </section>
+
+    <!-- 08 Two-column repeated (showing the pattern works mid-doc, not just once) -->
+    <section class="tl-section">
+      <div class="section-head">
+        <div class="section-num">08</div>
+        <h2>Two-column grid — repeated use</h2>
+      </div>
+      <hr class="tl-rule" />
+      <div class="section-body">
+        <p>The same <code>.two-col</code> pattern from §04 can recur further down a document. Multiple two-col grids per briefing is fine — the pattern is the workhorse of decisions-vs-open-questions layouts.</p>
+        <div class="two-col">
+          <div class="col">
+            <div class="sub-head">Decisions made</div>
+            <ul class="tl-list">
+              <li>Decision one — short, complete sentence.</li>
+              <li>Decision two — short, complete sentence.</li>
+              <li>Decision three — short, complete sentence.</li>
+              <li>Decision four — short, complete sentence.</li>
+            </ul>
+          </div>
+          <div class="col">
+            <div class="sub-head is-muted">Pending decisions</div>
+            <ul class="tl-list">
+              <li>Open question one — what trade-off is being weighed.</li>
+              <li>Open question two — what trade-off is being weighed.</li>
+              <li>Open question three — what trade-off is being weighed.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 Plain dash list (the everyday default) -->
+    <section class="tl-section">
+      <div class="section-head">
+        <div class="section-num">09</div>
+        <h2>Plain dash list</h2>
+      </div>
+      <hr class="tl-rule" />
+      <div class="section-body">
+        <p>When a section is a single flat list of points, drop straight to <code>.tl-list</code>. Bold a <strong>key name or term</strong> if it earns the emphasis, otherwise leave the line plain.</p>
+        <ul class="tl-list">
+          <li><strong>Item one</strong> — short, complete sentence carrying the point.</li>
+          <li><strong>Item two</strong> — date or status if relevant: <strong>DD MMM YYYY</strong>.</li>
+          <li><strong>Item three</strong> — short, complete sentence.</li>
+          <li>Plain unbolded item — works just as well when there's no headline term to lift.</li>
+          <li>Plain unbolded item — keep total list length below ten where possible.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 10 Open-items table with priority chips + owner column -->
+    <section class="tl-section">
+      <div class="section-head">
+        <div class="section-num">10</div>
+        <h2>Open-items table — priority + owner</h2>
+      </div>
+      <hr class="tl-rule" />
+      <div class="section-body">
+        <p>Close every briefing with a single open-items table — what was raised but left without an owner, timeline, or decision. Use <code>.tl-table.open-items</code> with three columns: item / priority chip / owner. This is the action register.</p>
+
+        <table class="tl-table open-items">
+          <thead>
+            <tr>
+              <th>Open item</th>
+              <th style="width: 130px;">Priority</th>
+              <th style="width: 200px;">Suggested owner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="item">Open question one — short headline of the decision needed</td>
+              <td class="pri"><span class="chip p-high">High</span></td>
+              <td class="owner">Owner name</td>
+            </tr>
+            <tr>
+              <td class="item">Open question two — short headline of the decision needed</td>
+              <td class="pri"><span class="chip p-high">High</span></td>
+              <td class="owner">Owner name</td>
+            </tr>
+            <tr>
+              <td class="item">Open question three — short headline of the decision needed</td>
+              <td class="pri"><span class="chip p-high">High</span></td>
+              <td class="owner">Owner A + Owner B</td>
+            </tr>
+            <tr>
+              <td class="item">Open question four — short headline of the decision needed</td>
+              <td class="pri"><span class="chip p-medium">Medium</span></td>
+              <td class="owner">Owner name</td>
+            </tr>
+            <tr>
+              <td class="item">Open question five — short headline of the decision needed</td>
+              <td class="pri"><span class="chip p-medium">Medium</span></td>
+              <td class="owner">Owner name</td>
+            </tr>
+            <tr>
+              <td class="item">Open question six — short headline of the decision needed</td>
+              <td class="pri"><span class="chip p-low">Low</span></td>
+              <td class="owner">Owner name</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 16px;"><strong>Priority chip variants:</strong> <code>.chip.p-high</code> (red dot), <code>.chip.p-medium</code> (amber), <code>.chip.p-low</code> (grey). Order rows by priority then by date raised — High first.</p>
+      </div>
+    </section>
+
+    <!-- 11 Closing note (optional — use for a follow-on action prompt) -->
+    <section class="tl-section">
+      <div class="section-head">
+        <div class="section-num">11</div>
+        <h2>Closing note (optional)</h2>
+      </div>
+      <hr class="tl-rule" />
+      <div class="section-body">
+        <p>If the briefing leads to a follow-on action (build something, schedule a session, escalate to a stakeholder), close with a short numbered or dash list of next steps. Keep it scannable — no more than five lines.</p>
+        <ul class="tl-list">
+          <li>Next step one — what, by when, who owns the next move.</li>
+          <li>Next step two — what, by when, who owns the next move.</li>
+          <li>Next step three — what, by when, who owns the next move.</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ======================= FOOTER ======================= -->
+  <!--
+    FOOTER — 3-up flexbox, 11px grey, uppercase tracked confidentiality marker on left.
+    Slots: confidentiality marker · entity / org line · prepared-by line.
+  -->
+  <footer class="doc-footer">
+    <div class="confidential">Confidential · Trueline Group</div>
+    <div>Entity line — legal entity names go here</div>
+    <div>Prepared DD MMM YYYY · Author name, Role</div>
+  </footer>
+
+</article>
+
+</body>
+</html>

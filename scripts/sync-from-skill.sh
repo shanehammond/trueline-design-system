@@ -37,6 +37,16 @@ for f in PLATFORM.md AUDIENCE.md VOICE.md BRAND.md COMPANY.md; do
   echo "  synced $f"
 done
 
+# brand/ — design-system CSS (machine-readable tokens, lives in skill assets/)
+src="$SKILL_ROOT/assets/trueline-design-system.css"
+dst="$REPO_ROOT/brand/trueline-design-system.css"
+if [[ -f "$src" ]]; then
+  cp "$src" "$dst"
+  echo "  synced trueline-design-system.css"
+else
+  echo "  MISSING in skill: trueline-design-system.css (skipping)"
+fi
+
 # briefing/ — full 7-file AI Briefing Pack
 echo "--- briefing/ ---"
 for f in \

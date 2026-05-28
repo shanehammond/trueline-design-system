@@ -1,0 +1,248 @@
+/* ============================================================
+   Trueline Design System — colors + type
+   Source: brand/BRAND.md, brand/VOICE.md, brand/PLATFORM.md
+   Brand fonts: Gotham (Light / Book / Book Italic / Medium)
+   loaded locally from fonts/. Gotham Bold not yet supplied —
+   weights ≥ 600 fall back to Helvetica/Arial.
+   ============================================================ */
+
+@font-face {
+  font-family: "Gotham";
+  src: url("fonts/Gotham_Light_Regular.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gotham";
+  src: url("fonts/Gotham_Book_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gotham";
+  src: url("fonts/Gotham_Book_Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gotham";
+  src: url("fonts/Gotham_Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* -------- Brand colours -------------------------------- */
+  --tl-red:        #941114;  /* PMS 7622C — primary accent  */
+  --tl-red-deep:   #6f0d10;  /* hover / pressed             */
+  --tl-red-tint:   #fbeceb;  /* surface tint                */
+  --tl-grey:       #4a4f55;  /* PMS 7540C — body + secondary*/
+  --tl-grey-90:    #5e636a;
+  --tl-grey-70:    #80868d;
+  --tl-grey-50:    #aab0b7;
+  --tl-grey-30:    #d4d8dc;
+  --tl-grey-10:    #eef0f2;
+  --tl-grey-05:    #f6f7f8;
+  --tl-black:      #000000;  /* print body fallback         */
+  --tl-white:      #ffffff;
+
+  /* -------- Semantic tokens (external mode default) ------ */
+  --fg:            var(--tl-grey);
+  --fg-strong:     #2c2f33;
+  --fg-muted:      var(--tl-grey-70);
+  --fg-onred:      var(--tl-white);
+  --fg-ongrey:     var(--tl-white);
+
+  --bg:            var(--tl-white);
+  --bg-alt:        var(--tl-grey-05);
+  --bg-tint:       var(--tl-red-tint);
+
+  --accent:        var(--tl-red);
+  --accent-hover:  var(--tl-red-deep);
+
+  --border:        var(--tl-grey-30);
+  --border-soft:   var(--tl-grey-10);
+  --rule-accent:   var(--tl-red);
+
+  /* -------- Type system --------------------------------- */
+  --font-display:  "Gotham", "Helvetica Neue", Arial, sans-serif;
+  --font-body:     "Gotham", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:     ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* Weights — map Gotham Medium ⇢ 500, Book ⇢ 400 */
+  --w-book:        400;
+  --w-medium:      500;
+  --w-semibold:    600;
+  --w-bold:        700;
+
+  /* Sizes (web; print 12pt body ≈ 16px) */
+  --t-eyebrow:     0.75rem;   /* 12px — uppercase labels */
+  --t-small:       0.8125rem; /* 13px */
+  --t-body:        0.875rem;  /* 14px — bottom of brand 14–16px range */
+  --t-lead:        1.0625rem; /* 17px lead paragraph */
+  --t-h6:          1rem;
+  --t-h5:          1.125rem;
+  --t-h4:          1.375rem;
+  --t-h3:          1.75rem;
+  --t-h2:          2.375rem;
+  --t-h1:          3.5rem;
+  --t-display:     5rem;      /* 80px — hero campaign lines */
+
+  --lh-tight:      1.05;
+  --lh-snug:       1.2;
+  --lh-normal:     1.45;
+  --lh-loose:      1.6;
+
+  --tr-tight:      -0.02em;
+  --tr-eyebrow:     0.15em;   /* generous tracking for caps */
+
+  /* -------- Spacing ------------------------------------- */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  24px;
+  --s-6:  32px;
+  --s-7:  48px;
+  --s-8:  64px;
+  --s-9:  96px;
+  --s-10: 128px;
+
+  /* Logo clear-space equals tagline height (≈ logo-h × 0.18). */
+  --logo-clear: 0.18;
+
+  /* -------- Radius, shadow, motion --------------------- */
+  --r-sm:   2px;
+  --r-md:   4px;
+  --r-lg:   8px;
+  --r-pill: 999px;
+
+  --shadow-1: 0 1px 2px rgba(20,22,24,0.06), 0 1px 1px rgba(20,22,24,0.04);
+  --shadow-2: 0 6px 16px rgba(20,22,24,0.08), 0 2px 4px rgba(20,22,24,0.05);
+  --shadow-3: 0 18px 40px rgba(20,22,24,0.12), 0 4px 10px rgba(20,22,24,0.06);
+
+  --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-fast:   140ms;
+  --motion-base:   220ms;
+  --motion-slow:   420ms;
+
+  /* -------- Layout -------------------------------------- */
+  --container:     1200px;
+  --gutter:        clamp(20px, 4vw, 60px);
+}
+
+/* ----------------------------------------------------------
+   Internal mode — toggle by adding class="tl-mode-internal"
+   on a wrapper. Strips red, swaps accent to grey, header
+   becomes a full-width grey band (see BRAND.md).
+   ---------------------------------------------------------- */
+.tl-mode-internal {
+  --accent:       var(--tl-grey);
+  --accent-hover: var(--tl-grey-90);
+  --rule-accent:  var(--tl-grey);
+  --bg-tint:      var(--tl-grey-10);
+}
+
+/* ----------------------------------------------------------
+   Element defaults
+   ---------------------------------------------------------- */
+html { color-scheme: light; }
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--w-book);
+  font-size: var(--t-body);
+  line-height: var(--lh-normal);
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--w-medium);
+  color: var(--fg-strong);
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* Major section headings — uppercase per brand */
+h1, h2 {
+  text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow);
+  line-height: var(--lh-tight);
+}
+h1 { font-size: var(--t-h1); letter-spacing: 0.08em; }
+h2 { font-size: var(--t-h2); letter-spacing: 0.1em; }
+
+/* Sub-headings stay sentence case */
+h3 { font-size: var(--t-h3); line-height: var(--lh-snug); }
+h4 { font-size: var(--t-h4); line-height: var(--lh-snug); }
+h5 { font-size: var(--t-h5); line-height: var(--lh-snug); }
+h6 { font-size: var(--t-h6); line-height: var(--lh-snug); font-weight: var(--w-medium); }
+
+p {
+  margin: 0 0 1em;
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+.tl-display {
+  font-family: var(--font-display);
+  font-weight: var(--w-medium);
+  font-size: var(--t-display);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--fg-strong);
+  text-wrap: balance;
+}
+
+.tl-eyebrow {
+  font-family: var(--font-display);
+  font-weight: var(--w-medium);
+  font-size: var(--t-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.tl-lead {
+  font-size: var(--t-lead);
+  line-height: var(--lh-loose);
+  color: var(--fg);
+  max-width: 62ch;
+}
+
+.tl-small  { font-size: var(--t-small); color: var(--fg-muted); }
+
+/* The Trueline accent rule — 4px brand red under headings */
+.tl-rule {
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--rule-accent);
+  border: 0;
+  margin: var(--s-4) 0 var(--s-5);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+a:hover { color: var(--accent-hover); }
+
+code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--tl-grey-05);
+  padding: 0.1em 0.35em;
+  border-radius: var(--r-sm);
+}
